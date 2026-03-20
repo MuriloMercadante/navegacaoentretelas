@@ -1,0 +1,44 @@
+# Android
+*.apk
+*.ap_
+*.dex
+*.class
+.DS_Store
+local.properties
+.gradle/
+.idea/
+*.iml
+*.log
+/build/
+/captures/
+.externalNativeBuild
+.cxx/
+
+# Gradle
+gradle-app.setting
+!gradle-wrapper.jar
+.gradle
+
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+.m2/
+
+# Kotlin
+*.kt.bak
+ktlintFormat
+
+# IDE
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
