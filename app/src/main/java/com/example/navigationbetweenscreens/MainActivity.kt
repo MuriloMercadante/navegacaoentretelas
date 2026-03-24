@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.navigation.NavType
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -11,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.navigationbetweenscreens.screens.LoginScreen
 import com.example.navigationbetweenscreens.screens.MenuScreen
 import com.example.navigationbetweenscreens.screens.PedidosScreen
@@ -42,16 +44,34 @@ class MainActivity : ComponentActivity() {
                                 navController = navController
                             )
                         }
-                        composable(route = "perfil") {
+                        composable(
+                            route = "perfil/{nome}/{idade}",
+                            arguments = listOf(
+                                navArgument("nome") { type = NavType.StringType },
+                                navArgument("idade") { type = NavType.IntType }
+                            )
+                        ) {
+                            val idade: Int? = it.arguments?.getInt("idade", 0)
+                            val nome: String? = it.arguments?.getString("nome", "Usuário Genérico")
                             PerfilScreen(
                                 modifier = Modifier.padding(innerPadding),
-                                navController = navController
-                            )
+                                navController,
+                                nome!!,
+                                idade!! )
+
+
                         }
-                        composable(route = "pedidos") {
+                        composable(
+                            route = "pedidos?cliente={cliente}",
+                            arguments = listOf(navArgument("cliente") {
+                                defaultValue = "Cliente Genérico"
+                            })
+                        ) {
+                            PedidosScreen(modifier = Modifier.padding(innerPadding), navController, it.arguments?.getString("cliente"))
                             PedidosScreen(
                                 modifier = Modifier.padding(innerPadding),
-                                navController = navController
+                                navController,
+                                it.arguments?.getString("cliente")
                             )
                         }
                     }

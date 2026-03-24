@@ -38,14 +38,14 @@ fun MenuScreen(modifier: Modifier = Modifier, navController: NavController) {
                 color = Color.White
             )
             Button(
-                onClick = { navController.navigate("perfil") },
+                onClick = { navController.navigate("perfil/Fulano de Tal/27") },
                 colors = ButtonDefaults.buttonColors(Color.White),
                 modifier = Modifier.padding(8.dp)
             ) {
                 Text("Perfil", color = Color.Blue, fontSize = 16.sp)
             }
             Button(
-                onClick = { navController.navigate("pedidos") },
+                onClick = { navController.navigate("pedidos?cliente=Cliente XPTO") },
                 colors = ButtonDefaults.buttonColors(Color.White),
                 modifier = Modifier.padding(8.dp)
             ) {
